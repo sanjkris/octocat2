@@ -74,4 +74,7 @@ echo "Thank you for your addition to our database!"
 #PS This is a test do we really need it???
 #mysqldump -u efcline -p octocat > octocat.sql
 
+#Need to add a dump so that we can all see our database!
+
+
 
