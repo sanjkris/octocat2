@@ -49,14 +49,15 @@ read user
 
 #Put it in mysql database octocat
 read -p "About to use MySQL. Would you like to continue?"
-mysql -D octocat -u $user -e "load data infile '/home/ubuntu/workspace/octocat2/octocat/data.csv' into table octocat fields terminated by ','"
+mysql -D octocat -u $user -e "LOAD DATA INFILE '/home/ubuntu/workspace/octocat2/octocat/data.csv' IGNORE INTO TABLE octocat FIELDS TERMINATED BY ','(Name, Age, Class, Animal, Color, Date, ID);"
 mysql -D octocat -u $user -e "select * from octocat"
 
 #All data added to database "octocat"
 echo "Thank you for your addition to our database!"
 
 #Dump it to a .sql file
-#mysqldump -u $user -p octocat > octocat.sql
+read -p "Would you like to create a mysqldump?"
+mysqldump -u $user -p octocat > octocat.sql
 
 echo "Goodbye!"
 
