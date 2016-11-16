@@ -47,37 +47,16 @@ echo "$answers" >> data.csv
 echo "What's your MySQL username?"
 read user
 
-#This is stuff that works/might work?
+#Put it in mysql database octocat
 read -p "About to use MySQL. Would you like to continue?"
-mysql -u $user -e "show databases"
-#mysql -u $user -p -e "insert into octocat (Name, Age, Class, Animal, Color, Date, ID) values($varname,$varage,$varclass,$varanim,$varcol,$(date),$ID)"
-
-#You never know! This might be useful later
-#if [ $MYSQL_PASS ]
-#then
-#  mysql -u "$MYSQL_ROOT" -p "$MYSQL_PASS" -e "SHOW DATABASES"
-#else
-#  mysql -u "$MYSQL_ROOT" -e "SHOW DATABASES"
-#fi
-
-#read -p "About to enter MySQL. Would you like to continue?"
-#mysql -u $username -p $password -e "show databases"
- 
-#Hahaha this didn't work
-#mysql-ctl cli
-#USE octocat;
-#LOAD DATA INFILE '/home/ubuntu/workspace/octocat2/octocat/data.csv' INTO TABLE octocat FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-#SELECT * FROM octocat ORDER BY Date; 
-#quit
+mysql -D octocat -u $user -e "load data infile '/home/ubuntu/workspace/octocat2/octocat/data.csv' into table octocat fields terminated by ','"
+mysql -D octocat -u $user -e "select * from octocat"
 
 #All data added to database "octocat"
 echo "Thank you for your addition to our database!"
 
-#PS This is a test do we really need it???
-#mysqldump -u efcline -p octocat > octocat.sql
-
 #Dump it to a .sql file
-mysqldump -u $user -p octocat > octocat.sql
+#mysqldump -u $user -p octocat > octocat.sql
 
 echo "Goodbye!"
 
