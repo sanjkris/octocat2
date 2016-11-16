@@ -47,8 +47,10 @@ echo "$answers" >> data.csv
 echo "What's your MySQL username?"
 read user
 
+#This is stuff that works/might work?
 read -p "About to use MySQL. Would you like to continue?"
 mysql -u $user -e "show databases"
+#mysql -u $user -p -e "insert into octocat (Name, Age, Class, Animal, Color, Date, ID) values($varname,$varage,$varclass,$varanim,$varcol,$(date),$ID)"
 
 #You never know! This might be useful later
 #if [ $MYSQL_PASS ]
@@ -74,7 +76,8 @@ echo "Thank you for your addition to our database!"
 #PS This is a test do we really need it???
 #mysqldump -u efcline -p octocat > octocat.sql
 
-#Need to add a dump so that we can all see our database!
+#Dump it to a .sql file
+mysqldump -u $user -p octocat > octocat.sql
 
-
+echo "Goodbye!"
 
