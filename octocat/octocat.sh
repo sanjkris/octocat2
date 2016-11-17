@@ -47,16 +47,36 @@ echo "$answers" >> data.csv
 echo "What's your MySQL username?"
 read user
 
-#Put it in mysql database octocat
+#This is stuff that works/might work?
 read -p "About to use MySQL. Would you like to continue?"
-mysql -D octocat -u $user -e "LOAD DATA INFILE '/home/ubuntu/workspace/octocat2/octocat/data.csv' IGNORE INTO TABLE octocat FIELDS TERMINATED BY ','(Name, Age, Class, Animal, Color, Date, ID);"
-mysql -D octocat -u $user -e "select * from octocat"
+mysql -u $user -e "show databases"
+#mysql -u $user -p -e "insert into octocat (Name, Age, Class, Animal, Color, Date, ID) values($varname,$varage,$varclass,$varanim,$varcol,$(date),$ID)"
+
+#You never know! This might be useful later
+#if [ $MYSQL_PASS ]
+#then
+#  mysql -u "$MYSQL_ROOT" -p "$MYSQL_PASS" -e "SHOW DATABASES"
+#else
+#  mysql -u "$MYSQL_ROOT" -e "SHOW DATABASES"
+#fi
+
+#read -p "About to enter MySQL. Would you like to continue?"
+#mysql -u $username -p $password -e "show databases"
+ 
+#Hahaha this didn't work
+#mysql-ctl cli
+#USE octocat;
+#LOAD DATA INFILE '/home/ubuntu/workspace/octocat2/octocat/data.csv' INTO TABLE octocat FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
+#SELECT * FROM octocat ORDER BY Date; 
+#quit
 
 #All data added to database "octocat"
 echo "Thank you for your addition to our database!"
 
+#PS This is a test do we really need it???
+#mysqldump -u efcline -p octocat > octocat.sql
+
 #Dump it to a .sql file
-read -p "Would you like to create a mysqldump?"
 mysqldump -u $user -p octocat > octocat.sql
 
 echo "Goodbye!"
